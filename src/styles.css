@@ -1,1 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400&display=swap');
+
+body
+{
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(to right, rgb(241, 245, 255), rgb(243, 232, 232));
+}

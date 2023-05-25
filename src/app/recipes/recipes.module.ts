@@ -1,7 +1,7 @@
 import { NgModule } from "@angular/core";
 import { RouterModule } from "@angular/router";
-import { CommonModule } from "@angular/common";
 import { ReactiveFormsModule } from "@angular/forms";
+import { SharedModule } from "../auth/shared.module";
 
 import { RecipesRoutingModule } from "./recepies-routing.module";
 
@@ -24,9 +24,9 @@ import { RecipeEditComponent } from "./recipe-edit/recipe-edit.component";
     ],
     imports: [
         RouterModule,
-        CommonModule,
         ReactiveFormsModule,
-        RecipesRoutingModule
+        RecipesRoutingModule,
+        SharedModule,
     ],
     exports: [
         RecipesComponent,
