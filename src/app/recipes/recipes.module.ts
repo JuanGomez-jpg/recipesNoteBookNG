@@ -28,14 +28,6 @@ import { RecipeEditComponent } from "./recipe-edit/recipe-edit.component";
         RecipesRoutingModule,
         SharedModule,
     ],
-    exports: [
-        RecipesComponent,
-        RecipeListComponent,
-        RecipeDetailComponent,
-        RecipeItemComponent,
-        RecipeStartComponent,
-        RecipeEditComponent,
-    ]
 })
 export class RecipesModule
 {
