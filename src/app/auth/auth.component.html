@@ -1,6 +1,6 @@
 <ng-template appPlaceHolder></ng-template>
 <div class="row">
-    <div class="col-xs-12 col-md-6 col-md-offset-3">
+    <div class="col-xs-12 col-md-6 mx-auto">
         <!-- <div class="alert alert-danger" *ngIf="error">
             <p>{{ error }}</p>
         </div> -->
@@ -9,7 +9,7 @@
             <app-loading-loader></app-loading-loader>
         </div>
         <form #authForm="ngForm" (ngSubmit)="onSubmit(authForm)" *ngIf="!isLoading">
-            <div class="form-group">
+            <div class="form-group mt-3">
                 <label for="email">Email</label>
                 <input 
                     type="email" 
@@ -20,7 +20,7 @@
                     required
                     email>
             </div>
-            <div class="form-group">
+            <div class="form-group mt-3">
                 <label for="password">Password</label>
                 <input 
                     type="password" 
@@ -31,11 +31,11 @@
                     required
                     minlength="6">
             </div>
-            <div>
-                <button class="btn btn-primary" style="margin-right: 20px;" type="submit" [disabled]="!authForm.valid">
+            <div class="mb-4">
+                <button class="btn btn-primary mt-4" style="margin-right: 20px;" type="submit" [disabled]="!authForm.valid">
                     {{ isLoginMode ? 'Login' : 'Sign Up' }}
                 </button>
-                <button class="btn btn-primary" (click)="onSwitchMode()" type="button">
+                <button class="btn btn-primary mt-4" (click)="onSwitchMode()" type="button">
                     Switch to {{ isLoginMode ? 'Sign Up' : 'Login' }}
                 </button>
             </div>
