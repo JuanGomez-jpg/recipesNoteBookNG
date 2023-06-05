@@ -1,6 +1,5 @@
 import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { Ingredient } from 'src/app/shared/ingredient.model';
-import { ShoppingListService } from '../shopping-list.service';
 
 import { NgForm } from '@angular/forms';
 import { Subscription } from 'rxjs';
@@ -23,7 +22,6 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
   hasText = false;
 
   constructor (
-    private slService: ShoppingListService,
     private store: Store<fromShoppingList.AppState>
   ) {}
 

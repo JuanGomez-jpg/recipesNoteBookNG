@@ -2,7 +2,7 @@
     style="cursor: pointer;"
     [routerLink]="[index]"
     routerLinkActive="active"
-    class="list-group-item clearfix">
+    class="list-group-item clearfix mb-3">
     <div class="pull-left">
         <h4 class="list-group-item-heading">{{ recipe.name }}</h4>
         <p class="list-group-item-text">{{ recipe.description }}</p>
@@ -12,6 +12,7 @@
             [src]="recipe.imagePath" 
             alt="{{ recipe.name }}" 
             class="img-responsive" 
-            style="max-height: 50px;">
+            style="width: 60%; height: auto;">
     </span>
 </a>
+<hr>
