@@ -31,54 +31,6 @@ export class AuthService {
     private store: Store<fromApp.AppState>
   ) {}
 
-  signup(email: string, password: string) {
-    return this.http
-      .post<AuthResponseData>(
-        'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=' +
-          environment.firebaseAPIKey,
-        {
-          email: email,
-          password: password,
-          returnSecureToken: true
-        }
-      )
-      .pipe(
-        catchError(this.handleError),
-        tap(resData => {
-          this.handleAuthentication(
-            resData.email,
-            resData.localId,
-            resData.idToken,
-            +resData.expiresIn
-          );
-        })
-      );
-  }
-
-  login(email: string, password: string) {
-    return this.http
-      .post<any>(
-        'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=' +
-          environment.firebaseAPIKey,
-        {
-          email: email,
-          password: password,
-          returnSecureToken: true
-        }
-      )
-      .pipe(
-        catchError(this.handleError),
-        tap(resData => {
-          this.handleAuthentication(
-            resData.email,
-            resData.localId,
-            resData.idToken,
-            +resData.expiresIn
-          );
-        })
-      );
-  }
-
   autoLogin() {
     const userData: {
       email: string;
@@ -107,15 +59,6 @@ export class AuthService {
           expirationDate: new Date(userData._tokenExpirationDate)
         })
       );
-      // Alternative syntax:
-      // this.store.dispatch(
-      //   AuthActions.login({
-      //     email: loadedUser.email,
-      //     userId: loadedUser.id,
-      //     token: loadedUser.token,
-      //     expirationDate: new Date(userData._tokenExpirationDate),
-      //   })
-      // );
       const expirationDuration =
         new Date(userData._tokenExpirationDate).getTime() -
         new Date().getTime();
@@ -124,11 +67,7 @@ export class AuthService {
   }
 
   logout() {
-    // this.user.next(null);
     this.store.dispatch(new AuthActions.Logout());
-    // Alternative syntax:
-    // this.store.dispatch(AuthActions.logout());
-    this.router.navigate(['/auth']);
     localStorage.removeItem('userData');
     if (this.tokenExpirationTimer) {
       clearTimeout(this.tokenExpirationTimer);
