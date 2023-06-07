@@ -1,12 +1,10 @@
 import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
-import { Ingredient } from 'src/app/shared/ingredient.model';
-
 import { NgForm } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { Store } from '@ngrx/store';
 
+import { Ingredient } from '../../shared/ingredient.model';
 import * as ShoppingListActions from '../store/shopping-list.actions';
-
 import * as fromApp from '../../store/app.reducer';
 
 @Component({
@@ -15,71 +13,78 @@ import * as fromApp from '../../store/app.reducer';
   styleUrls: ['./shopping-edit.component.css']
 })
 export class ShoppingEditComponent implements OnInit, OnDestroy {
-  @ViewChild('f', {static: false}) slForm: NgForm;
-  subscription: Subscription;  
+  @ViewChild('f', { static: false }) slForm: NgForm;
+  subscription: Subscription;
   editMode = false;
   editedItem: Ingredient;
-  hasText = false;
 
-  constructor (
+  constructor(
     private store: Store<fromApp.AppState>
   ) {}
 
-    ngOnInit(): void {
-      this.subscription = this.store.select('shoppingList').subscribe(stateData => {
-        if (stateData.editedIngredientIndex > -1)
-        {
+  ngOnInit() {
+    this.subscription = this.store
+      .select('shoppingList')
+      .subscribe(stateData => {
+        if (stateData.editedIngredientIndex > -1) {
           this.editMode = true;
           this.editedItem = stateData.editedIngredient;
           this.slForm.setValue({
             name: this.editedItem.name,
             amount: this.editedItem.amount
           });
-        }
-        else
-        {
+        } else {
           this.editMode = false;
         }
       });
-    }
+  }
 
-    onSubmit(form: NgForm)
-    {
-      const value = form.value;
-      const newIngredient = new Ingredient(value.name, value.amount);
-      if (this.editMode)
-      {
-        this.store.dispatch(
-          new ShoppingListActions.UpdateIngredient(newIngredient)
-        );
-        //this.slService.updateIngredient(this.editedItemIndex, newIngredient);
-      }
-      else
-      {
-        this.store.dispatch(new ShoppingListActions.AddIngredient(newIngredient));
-        //this.slService.addIngredient(newIngredient);
-      }
-      this.editMode = false;
-      form.reset();
+  onSubmit(form: NgForm) {
+    const value = form.value;
+    const newIngredient = new Ingredient(value.name, value.amount);
+    if (this.editMode) {
+      // this.slService.updateIngredient(this.editedItemIndex, newIngredient);
+      this.store.dispatch(
+        new ShoppingListActions.UpdateIngredient(newIngredient)
+      );
+      // Alternative syntax:
+      // this.store.dispatch(
+      //   ShoppingListActions.UpdateIngredient({
+      //     ingredient: newIngredient,
+      //   })
+      // );
+    } else {
+      // this.slService.addIngredient(newIngredient);
+      this.store.dispatch(new ShoppingListActions.AddIngredient(newIngredient));
+      // Alternative syntax:
+      // this.store.dispatch(
+      //   ShoppingListActions.AddIngredient({ ingredient: newIngredient })
+      // );
     }
+    this.editMode = false;
+    form.reset();
+  }
 
-    onClear()
-    {
-      this.slForm.reset();
-      this.editMode = false;
-      this.store.dispatch(new ShoppingListActions.StopEdit());
-    }
+  onClear() {
+    this.slForm.reset();
+    this.editMode = false;
+    this.store.dispatch(new ShoppingListActions.StopEdit());
+    // Alternative syntax:
+    // this.store.dispatch(ShoppingListActions.StopEdit());
+  }
 
-    onDelete()
-    {
-      this.store.dispatch(new ShoppingListActions.DeleteIngredient()); 
-      //this.slService.deleteIngredient(this.editedItemIndex);
-      this.onClear();
-    }
+  onDelete() {
+    // this.slService.deleteIngredient(this.editedItemIndex);
+    this.store.dispatch(new ShoppingListActions.DeleteIngredient());
+    // Alternative syntax:
+    // this.store.dispatch(ShoppingListActions.DeleteIngredient());
+    this.onClear();
+  }
 
-    ngOnDestroy() {
-      this.subscription.unsubscribe();
-      this.store.dispatch(new ShoppingListActions.StopEdit());
-    }
-
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+    this.store.dispatch(new ShoppingListActions.StopEdit());
+    // Alternative syntax:
+    // this.store.dispatch(ShoppingListActions.StopEdit());
+  }
 }
