@@ -1,64 +1,64 @@
-<nav class="navbar sticky-top navbar-expand-md navbar-light bg-light">
-    <div class="container-fluid">
+<nav class="navbar sticky-top navbar-expand-md navbar-dark bg-dark">
+  <div class="container-fluid">
 
-        <div class="navbar-header">
-            <a class="navbar-brand" href="#">
-                <i class="bi bi-journal-bookmark-fill"></i>
-                <span class="text-danger">Recipe Book</span>
-            </a>
-        </div>
+      <div class="navbar-header">
+          <a class="navbar-brand" href="#">
+              <i class="bi bi-journal-bookmark-fill"></i>
+              <span class="text-danger">Recipe Book</span>
+          </a>
+      </div>
 
-        <button class="navbar-toggler" type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#menu"
-        aria-controls="navbarSupportedContent" aria-expanded="false"
-        aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+      <button class="navbar-toggler" type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#menu"
+      aria-controls="navbarSupportedContent" aria-expanded="false"
+      aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+      </button>
 
-        
-        <div class="collapse navbar-collapse" id="menu">
-            <ul class="navbar-nav me-auto">
+      
+      <div class="collapse navbar-collapse" id="menu">
+          <ul class="navbar-nav me-auto">
 
-                <li class="nav-item mr-4" routerLinkActive="active" *ngIf="isAuthenticated">
-                    <a class="nav-link active" routerLink="/recipes">Recipes</a>
-                </li>
+              <li class="nav-item mr-4" routerLinkActive="active" *ngIf="isAuthenticated">
+                  <a class="nav-link active" routerLink="/recipes">Recipes</a>
+              </li>
 
-                <li class="nav-item mr-4" routerLinkActive="active" *ngIf="!isAuthenticated">
-                    <a class="nav-link active" routerLink="/auth">Authenticate</a>
-                </li>
+              <li class="nav-item mr-4" routerLinkActive="active" *ngIf="!isAuthenticated">
+                  <a class="nav-link active" routerLink="/auth">Authenticate</a>
+              </li>
 
-                <li class="nav-item mr-4" routerLinkActive="active">
-                    <a class="nav-link active" routerLink="/shopping-list">Shopping List</a>
-                </li>
+              <li class="nav-item mr-4" routerLinkActive="active">
+                  <a class="nav-link active" routerLink="/shopping-list">Shopping List</a>
+              </li>
 
-                <li class="nav-item mr-4" *ngIf="isAuthenticated">
-                    <a class="nav-link active" style="cursor: pointer;" (click)="onLogOut()">Logout</a>
-                </li>
+              <li class="nav-item mr-4" *ngIf="isAuthenticated">
+                  <a class="nav-link active" style="cursor: pointer;" (click)="onLogout()">Logout</a>
+              </li>
 
-                <li class="nav-item dropdown mr-4" *ngIf="isAuthenticated">
-                    <a class="nav-link dropdown-toggle"
-                        style="cursor: pointer;"
-                        id="navbarDropdownManage" 
-                        role="button"
-                        data-bs-toggle="dropdown" 
-                        aria-expanded="false">
-                        <i class="bi bi-person-circle"></i>
-                        Manage
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownManage">
-                        <li>
-                            <a class="dropdown-item" style="cursor: pointer;" (click)="onSaveData()">Save Data</a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" style="cursor: pointer;" (click)="onFetchData()">Fetch Data</a>
-                        </li>
-                    </ul>
-                </li>
+              <li class="nav-item dropdown mr-4" *ngIf="isAuthenticated">
+                  <a class="nav-link dropdown-toggle"
+                      style="cursor: pointer;"
+                      id="navbarDropdownManage" 
+                      role="button"
+                      data-bs-toggle="dropdown" 
+                      aria-expanded="false">
+                      <i class="bi bi-person-circle"></i>
+                      Manage
+                  </a>
+                  <ul class="dropdown-menu" aria-labelledby="navbarDropdownManage">
+                      <li>
+                          <a class="dropdown-item" style="cursor: pointer;" (click)="onSaveData()">Save Data</a>
+                      </li>
+                      <li>
+                          <a class="dropdown-item" style="cursor: pointer;" (click)="onFetchData()">Fetch Data</a>
+                      </li>
+                  </ul>
+              </li>
 
-            </ul>
+          </ul>
 
-        </div>
+      </div>
 
-    </div>
+  </div>
 </nav>
