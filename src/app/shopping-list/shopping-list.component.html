@@ -9,7 +9,7 @@
         *ngFor="let ingredient of (ingredients | async).ingredients; let i = index"
         (click)="onEditItem(i)"
       >
-        {{ ingredient.name }} ({{ ingredient.amount }})
+        {{ ingredient.name }} <span class="badge rounded-pill bg-info">{{ ingredient.amount }}</span>
       </a>
     </ul>
   </div>
