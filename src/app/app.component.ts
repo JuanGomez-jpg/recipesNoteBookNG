@@ -20,6 +20,6 @@ export class AppComponent implements OnInit {
     this.store.dispatch(new AuthActions.AutoLogin());
     // Alternative syntax:
     // this.store.dispatch(AuthActions.autoLogin());
-    this.loggingService.printLog('Hello from AppComponent ngOnInit');
+    //this.loggingService.printLog('Hello from AppComponent ngOnInit');
   }
 }
